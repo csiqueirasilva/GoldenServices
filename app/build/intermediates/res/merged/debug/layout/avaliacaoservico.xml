@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/avaliarservico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Avaliação De Servicos" />
+
+    <TextView
+        android:id="@+id/usuario_pestador_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/avaliarservico"
+        android:text="Usuário Prestador de Servico:"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/cliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/usuario_pestador_servico"
+        android:text="Serviço:"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/dataedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cliente"
+        android:text="Data:"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/datamodify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dataedit"
+        android:layout_alignBottom="@+id/dataedit"
+        android:layout_toRightOf="@+id/dataedit"
+        android:text="00/00/00"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/nota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dataedit"
+        android:text="Nota: " />
+
+    <RatingBar
+        android:id="@+id/rtbEstrelas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nota"
+        android:layout_centerHorizontal="true"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.5" />
+
+    <TextView
+        android:id="@+id/nome_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avaliarservico"
+        android:layout_toRightOf="@+id/usuario_pestador_servico"
+        android:text="Nome Usúario"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rtbEstrelas"
+        android:ems="10"
+        android:hint="Comentario"
+        android:lines="5" 
+        android:gravity="top"
+        >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/usuario_pestador_servico"
+        android:layout_below="@+id/editText1"
+        android:layout_toRightOf="@+id/datamodify"
+        android:text="Enviar" />
+
+    <TextView
+        android:id="@+id/tipo_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/datamodify"
+        android:layout_toRightOf="@+id/cliente"
+        android:text="Tipo Serviço"
+        android:textSize="15dp" />
+   
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+      
+    
+    
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+        
+         <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="25dp"
+            android:layout_gravity="center_horizontal" />
+
+         <EditText
+             android:id="@+id/email"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:ems="10"
+             android:hint="Email"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:textSize="25dp" >
+
+             <requestFocus />
+         </EditText>
+
+         <EditText
+             android:id="@+id/Senha"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:ems="10"
+             android:hint="Senha:"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:textSize="25dp" />
+           
+         <Button
+        android:id="@+id/ButtonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="25dp" 
+       	android:layout_gravity="center_horizontal"
+       />
+
+          <TextView
+              android:id="@+id/esqueceuasenha"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:text="Esqueceu a Senha?"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:textSize="25dp" />
+        
+    </LinearLayout>
+    
+
+</ScrollView>
