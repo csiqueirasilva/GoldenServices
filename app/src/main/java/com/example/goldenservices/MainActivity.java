@@ -25,11 +25,19 @@ public class MainActivity extends Activity
   ScrollView sv;
   LinearLayout ll;
  */
+
+    EditText senha;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) 
  {
   super.onCreate(savedInstanceState);
   super.setContentView(R.layout.login);
+
+     senha = (EditText)findViewById(R.id.senha);
+
+
+
   
  /* editNome = (EditText) findViewById(R.id.editNome);
   editTelefone = (EditText) findViewById(R.id.EditTelefone);
