@@ -19,7 +19,8 @@
             android:text="Login"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="25dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+             android:layout_marginTop="10dp" />
 
          <EditText
              android:id="@+id/email"
@@ -48,17 +49,18 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="25dp" 
-       	android:layout_gravity="center_horizontal" />
+       	android:layout_gravity="center_horizontal"
+             android:layout_marginTop="10dp" />
 
-          <TextView
-              android:id="@+id/esqueceuasenha"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_horizontal"
-              android:text="Esqueceu a Senha?"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:textSize="25dp" />
-        
+        <Button
+            android:id="@+id/formLoginBtnCadastrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar Usuário"
+            android:textSize="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
+
     </LinearLayout>
     
 

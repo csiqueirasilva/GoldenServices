@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import br.uva.goldenservices.MainActivity;
 import br.uva.goldenservices.R;
@@ -18,15 +20,17 @@ public class OnClick {
 
     private final static ArrayList<View> lastSearch = new ArrayList();
     private static MainActivity mainActivity;
+    private final static HashMap<Integer, OnClickCallback> callbacks = new HashMap();
 
     public static void resolve(int viewId) {
-        if(viewId == R.id.ButtonLogin) {
-            login();
+        OnClickCallback onClickCallback = callbacks.get(viewId);
+        if(onClickCallback != null) {
+            onClickCallback.onClick();
         }
     }
 
     private static void enableLastSearch() {
-        for(View v : lastSearch) {
+        for (View v : lastSearch) {
             v.setEnabled(true);
         }
     }
@@ -36,16 +40,16 @@ public class OnClick {
 
         lastSearch.clear();
 
-        for(int i = 0; i < ids.length; i++) {
+        for (int i = 0; i < ids.length; i++) {
             int id = ids[i];
             View v = mainActivity.findViewById(id);
-            if(v instanceof EditText) {
+            if (v instanceof EditText) {
                 ret[i] = ((EditText) v).getText().toString();
             } else {
                 ret[i] = null;
             }
 
-            if(disable) {
+            if (disable) {
                 v.setEnabled(false);
             }
 
@@ -59,14 +63,13 @@ public class OnClick {
         String[] values = getStringValues(true, R.id.email, R.id.senha);
         ConnectorWebService.logarUsuario(values[0], values[1]);
         Usuario usuarioLogado = ConnectorWebService.getUsuarioLogado();
-        if(usuarioLogado == null) {
+        if (usuarioLogado == null) {
             mainActivity.alert.show("Erro ao logar!");
         }
         enableLastSearch();
     }
 
-    public static void initialize(MainActivity extActivity) {
-        mainActivity = extActivity;
+    public static void setOnClickListener() {
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -76,8 +79,25 @@ public class OnClick {
             }
         };
 
-        View buttonLogin = mainActivity.findViewById(R.id.ButtonLogin);
-        buttonLogin.setOnClickListener(onClickListener);
+        Set<Integer> ids = callbacks.keySet();
+        for (int id : ids) {
+            View buttonLogin = mainActivity.findViewById(R.id.ButtonLogin);
+            buttonLogin.setOnClickListener(onClickListener);
+        }
+
+    }
+
+    public static void initialize(MainActivity extActivity) {
+        mainActivity = extActivity;
+
+        callbacks.put(R.id.ButtonLogin, new OnClickCallback() {
+            @Override
+            public void onClick() {
+                login();
+            }
+        });
+
+        setOnClickListener();
     }
 
 }
