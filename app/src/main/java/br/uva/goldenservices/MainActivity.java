@@ -3,6 +3,7 @@ package br.uva.goldenservices;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Instrumentation;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -20,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
+import br.uva.goldenservices.ui.Helper;
+import br.uva.goldenservices.ui.MenuHelper;
 import br.uva.goldenservices.ui.OnClick;
 import golden.services.http.ConnectorWebService;
 
@@ -34,6 +37,9 @@ public class MainActivity extends Activity {/*
  */
 
     final public Alert alert = new Alert();
+
+    private Menu optionsMenu;
+    private int currentView = -1;
 
     final public class Alert {
 
@@ -55,6 +61,45 @@ public class MainActivity extends Activity {/*
         }
     }
 
+    public Menu getMenu () {
+        return this.optionsMenu;
+    }
+
+    public void setCurrentView(int id) {
+        this.currentView = id;
+        this.setContentView(id);
+        this.invalidateOptionsMenu();
+    }
+
+    public int getCurrentView() {
+        return this.currentView;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.optionsMenu = menu;
+        MenuHelper.fillOptions(this.currentView, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        boolean ret = true;
+
+        if(!MenuHelper.resolve(this.currentView, item.getItemId())) {
+            ret = super.onOptionsItemSelected(item);
+        }
+
+        return ret;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Helper.initialize(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +108,6 @@ public class MainActivity extends Activity {/*
         /* Enable Network */
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        OnClick.initialize(this);
 
  /* editNome = (EditText) findViewById(R.id.editNome);
   editTelefone = (EditText) findViewById(R.id.EditTelefone);
