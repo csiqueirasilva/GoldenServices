@@ -41,6 +41,9 @@ public class OnClick {
         Usuario usuarioLogado = ConnectorWebService.getUsuarioLogado();
         if (usuarioLogado == null) {
             Helper.alert("Erro ao logar!");
+        } else {
+            Helper.setUsuarioConectado(usuarioLogado);
+            Helper.changeView(R.layout.telainiciallogado);
         }
         Helper.enableLastSearch();
     }
@@ -62,6 +65,13 @@ public class OnClick {
         });
 
         callbacks.put(R.id.fromCriarBtnVoltar, new OnClickCallback() {
+            @Override
+            public void onClick() {
+                Helper.changeView(R.layout.login);
+            }
+        });
+
+        callbacks.put(R.id.telaInicialLogadoLogoff, new OnClickCallback() {
             @Override
             public void onClick() {
                 Helper.changeView(R.layout.login);

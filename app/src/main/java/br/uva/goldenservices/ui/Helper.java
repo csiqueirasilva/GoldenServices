@@ -7,6 +7,7 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 import br.uva.goldenservices.MainActivity;
+import golden.services.model.usuarios.Usuario;
 
 /**
  * Created by caio on 30/05/16.
@@ -15,6 +16,7 @@ public class Helper {
 
     private static MainActivity mainActivity;
     private final static ArrayList<View> lastSearch = new ArrayList();
+    private static Usuario usuarioConectado = null;
 
     public static void enableLastSearch() {
         for (View v : lastSearch) {
@@ -50,6 +52,7 @@ public class Helper {
         mainActivity = ma;
         OnClick.fillOnClickCallbacks();
         OnClick.setOnClickListener();
+        ViewLoader.initialize(mainActivity.getCurrentView());
     }
 
     public static void changeView(int id) {
@@ -65,4 +68,11 @@ public class Helper {
         return mainActivity;
     }
 
+    public static Usuario getUsuarioConectado() {
+        return usuarioConectado;
+    }
+
+    public static void setUsuarioConectado(Usuario usuarioConectado) {
+        Helper.usuarioConectado = usuarioConectado;
+    }
 }

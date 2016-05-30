@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="366dp"
+        android:layout_height="127dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BEM VINDO A GOLDEN SERVICES, USE O MENU DE OPCOES PARA NAVEGAR"
+        android:id="@+id/telaInicialLogadoBemVindo"
+        android:layout_x="12dp"
+        android:layout_y="12dp"
+        android:gravity="center_vertical|center" />
+
+    <TextView
+        android:layout_width="248dp"
+        android:layout_height="59dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/telaInicialLogadoUsuarioConectado"
+        android:layout_x="66dp"
+        android:layout_y="127dp"
+        android:text="usuarioConectado"
+        android:gravity="center_vertical|center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desconectar do Sistema"
+        android:id="@+id/telaInicialLogadoLogoff"
+        android:layout_x="85dp"
+        android:layout_y="208dp" />
+</AbsoluteLayout>
