@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
+import br.uva.goldenservices.ui.Helper;
 import br.uva.goldenservices.ui.OnClick;
 import golden.services.http.ConnectorWebService;
 
@@ -33,8 +34,6 @@ public class MainActivity extends Activity {/*
   ScrollView sv;
   LinearLayout ll;
  */
-
-    private static boolean init = false;
 
     final public Alert alert = new Alert();
 
@@ -58,15 +57,10 @@ public class MainActivity extends Activity {/*
         }
     }
 
-    public void changeView(int id) {
-        setContentView(id);
-        OnClick.initialize(this);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-        OnClick.initialize(this);
+        Helper.initialize(this);
     }
 
     @Override

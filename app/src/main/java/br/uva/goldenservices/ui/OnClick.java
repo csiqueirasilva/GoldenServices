@@ -1,5 +1,6 @@
 package br.uva.goldenservices.ui;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,8 +18,6 @@ import golden.services.model.usuarios.Usuario;
  */
 public class OnClick {
 
-    private final static ArrayList<View> lastSearch = new ArrayList();
-    private static MainActivity mainActivity;
     private final static HashMap<Integer, OnClickCallback> callbacks = new HashMap();
 
     private final static View.OnClickListener listener = new View.OnClickListener() {
@@ -36,44 +35,14 @@ public class OnClick {
         }
     }
 
-    private static void enableLastSearch() {
-        for (View v : lastSearch) {
-            v.setEnabled(true);
-        }
-    }
-
-    private static String[] getStringValues(boolean disable, int... ids) {
-        String[] ret = new String[ids.length];
-
-        lastSearch.clear();
-
-        for (int i = 0; i < ids.length; i++) {
-            int id = ids[i];
-            View v = mainActivity.findViewById(id);
-            if (v instanceof EditText) {
-                ret[i] = ((EditText) v).getText().toString();
-            } else {
-                ret[i] = null;
-            }
-
-            if (disable) {
-                v.setEnabled(false);
-            }
-
-            lastSearch.add(v);
-        }
-
-        return ret;
-    }
-
     private static void login() {
-        String[] values = getStringValues(true, R.id.email, R.id.senha);
+        String[] values = Helper.getStringValues(true, R.id.email, R.id.senha);
         ConnectorWebService.logarUsuario(values[0], values[1]);
         Usuario usuarioLogado = ConnectorWebService.getUsuarioLogado();
         if (usuarioLogado == null) {
-            mainActivity.alert.show("Erro ao logar!");
+            Helper.alert("Erro ao logar!");
         }
-        enableLastSearch();
+        Helper.enableLastSearch();
     }
 
     public static void fillOnClickCallbacks() {
@@ -88,34 +57,37 @@ public class OnClick {
         callbacks.put(R.id.formLoginBtnCadastrar, new OnClickCallback() {
             @Override
             public void onClick() {
-                mainActivity.changeView(R.layout.cadastrousuario);
+                Helper.changeView(R.layout.cadastrousuario);
             }
         });
 
         callbacks.put(R.id.fromCriarBtnVoltar, new OnClickCallback() {
             @Override
             public void onClick() {
-                mainActivity.changeView(R.layout.login);
+                Helper.changeView(R.layout.login);
             }
         });
+
+        callbacks.put(R.id.ButtonCriar, new OnClickCallback() {
+            @Override
+            public void onClick() {
+                Activity activity = Helper.getActivity();
+                FormSubmit.sendCadastroUsuario(activity);
+            }
+        });
+
     }
 
     public static void setOnClickListener() {
 
         Set<Integer> ids = callbacks.keySet();
         for (int id : ids) {
-            View v = mainActivity.findViewById(id);
+            View v = Helper.getActivity().findViewById(id);
             if(v != null && !v.hasOnClickListeners()) {
                 v.setOnClickListener(listener);
             }
         }
 
-    }
-
-    public static void initialize(MainActivity extActivity) {
-        mainActivity = extActivity;
-        fillOnClickCallbacks();
-        setOnClickListener();
     }
 
 }

@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nome: "
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:enabled="true" />
 
         <EditText
             android:id="@+id/EditTelefone"
@@ -34,7 +35,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Telefone: "
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:enabled="true" />
 
         <EditText
             android:id="@+id/editTMatricula"
@@ -42,7 +44,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Matricula: "
-            android:textSize="25dp" >
+            android:textSize="25dp"
+            android:enabled="true">
 
             <requestFocus />
         </EditText>
@@ -53,7 +56,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Endereço: "
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:enabled="true" />
         
          <EditText
              android:id="@+id/editEmail"
@@ -64,7 +68,8 @@
              android:layout_below="@+id/editEndereco"
              android:ems="10"
              android:hint="Email: "
-             android:textSize="25dp" />
+             android:textSize="25dp"
+             android:enabled="true" />
 
          <EditText
              android:id="@+id/editConfirmeEmail"
@@ -72,7 +77,8 @@
              android:layout_height="wrap_content"
              android:ems="10"
              android:hint="Confirme Email: "
-             android:textSize="25dp" />
+             android:textSize="25dp"
+             android:enabled="true" />
 
     <EditText
         android:id="@+id/Senha"
@@ -84,7 +90,8 @@
         android:ems="10"
         android:hint="Senha: "
         android:inputType="textPassword"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:enabled="true" />
 
     <EditText
         android:id="@+id/cofirmeSenha"
@@ -96,7 +103,8 @@
         android:ems="10"
         android:hint="Confirme Senha: "
         android:inputType="textPassword"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:enabled="true" />
 
     <RadioGroup
         android:id="@+id/radioGroup1"
@@ -142,7 +150,9 @@
         android:layout_gravity="center_horizontal"
         android:text="Criar"
         android:textSize="25dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:enabled="true"
+        android:clickable="true" />
 
         <Button
             android:id="@+id/fromCriarBtnVoltar"
@@ -151,7 +161,9 @@
             android:layout_gravity="center_horizontal"
             android:text="Voltar"
             android:textSize="25dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:enabled="true"
+            android:clickable="true" />
 
     </LinearLayout>
 
