@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="GSWebservice-1.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/src/GSWebservice-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/bin/GSWebservice-1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

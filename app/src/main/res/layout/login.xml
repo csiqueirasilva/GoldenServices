@@ -48,8 +48,7 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="25dp" 
-       	android:layout_gravity="center_horizontal"
-       />
+       	android:layout_gravity="center_horizontal" />
 
           <TextView
               android:id="@+id/esqueceuasenha"
