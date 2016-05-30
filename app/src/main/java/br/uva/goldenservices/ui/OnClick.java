@@ -1,6 +1,5 @@
 package br.uva.goldenservices.ui;
 
-import android.app.Activity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -21,6 +20,14 @@ public class OnClick {
     private final static ArrayList<View> lastSearch = new ArrayList();
     private static MainActivity mainActivity;
     private final static HashMap<Integer, OnClickCallback> callbacks = new HashMap();
+
+    private final static View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+            OnClick.resolve(id);
+        }
+    };
 
     public static void resolve(int viewId) {
         OnClickCallback onClickCallback = callbacks.get(viewId);
@@ -69,26 +76,7 @@ public class OnClick {
         enableLastSearch();
     }
 
-    public static void setOnClickListener() {
-
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = v.getId();
-                OnClick.resolve(id);
-            }
-        };
-
-        Set<Integer> ids = callbacks.keySet();
-        for (int id : ids) {
-            View buttonLogin = mainActivity.findViewById(R.id.ButtonLogin);
-            buttonLogin.setOnClickListener(onClickListener);
-        }
-
-    }
-
-    public static void initialize(MainActivity extActivity) {
-        mainActivity = extActivity;
+    public static void fillOnClickCallbacks() {
 
         callbacks.put(R.id.ButtonLogin, new OnClickCallback() {
             @Override
@@ -97,6 +85,36 @@ public class OnClick {
             }
         });
 
+        callbacks.put(R.id.formLoginBtnCadastrar, new OnClickCallback() {
+            @Override
+            public void onClick() {
+                mainActivity.changeView(R.layout.cadastrousuario);
+            }
+        });
+
+        callbacks.put(R.id.fromCriarBtnVoltar, new OnClickCallback() {
+            @Override
+            public void onClick() {
+                mainActivity.changeView(R.layout.login);
+            }
+        });
+    }
+
+    public static void setOnClickListener() {
+
+        Set<Integer> ids = callbacks.keySet();
+        for (int id : ids) {
+            View v = mainActivity.findViewById(id);
+            if(v != null && !v.hasOnClickListeners()) {
+                v.setOnClickListener(listener);
+            }
+        }
+
+    }
+
+    public static void initialize(MainActivity extActivity) {
+        mainActivity = extActivity;
+        fillOnClickCallbacks();
         setOnClickListener();
     }
 

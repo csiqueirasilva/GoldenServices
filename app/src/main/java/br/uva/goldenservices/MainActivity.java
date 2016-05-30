@@ -3,6 +3,7 @@ package br.uva.goldenservices;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Instrumentation;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {/*
   LinearLayout ll;
  */
 
+    private static boolean init = false;
+
     final public Alert alert = new Alert();
 
     final public class Alert {
@@ -55,6 +58,17 @@ public class MainActivity extends Activity {/*
         }
     }
 
+    public void changeView(int id) {
+        setContentView(id);
+        OnClick.initialize(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        OnClick.initialize(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +77,6 @@ public class MainActivity extends Activity {/*
         /* Enable Network */
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        OnClick.initialize(this);
 
  /* editNome = (EditText) findViewById(R.id.editNome);
   editTelefone = (EditText) findViewById(R.id.EditTelefone);
