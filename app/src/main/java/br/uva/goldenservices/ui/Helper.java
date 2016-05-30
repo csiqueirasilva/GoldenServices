@@ -53,7 +53,7 @@ public class Helper {
     }
 
     public static void changeView(int id) {
-        mainActivity.setContentView(id);
+        mainActivity.setCurrentView(id);
         Helper.initialize(mainActivity);
     }
 
