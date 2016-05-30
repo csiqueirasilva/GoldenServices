@@ -2,11 +2,15 @@ package br.uva.goldenservices;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +19,11 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
-public class MainActivity extends Activity 
-{/*
+
+import br.uva.goldenservices.ui.OnClick;
+import golden.services.http.ConnectorWebService;
+
+public class MainActivity extends Activity {/*
   ActionBar bar;
   EditText editNome,editTelefone,editMatricula,editEndereco,editEmail,editConfirmeEmail,editSenha,editConfirmSenha;
   RadioButton rbtn1,rbtn2;
@@ -26,19 +33,39 @@ public class MainActivity extends Activity
   LinearLayout ll;
  */
 
-    EditText senha;
+    final public Alert alert = new Alert();
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) 
- {
-  super.onCreate(savedInstanceState);
-  super.setContentView(R.layout.login);
+    final public class Alert {
 
-     senha = (EditText)findViewById(R.id.senha);
+        public void showWithTitle(String title, String msg) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle(title);
+            alertDialog.setMessage(msg);
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
 
+        public void show(String msg) {
+            showWithTitle("SISTEMA", msg);
+        }
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        super.setContentView(R.layout.login);
 
-  
+        /* Enable Network */
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        OnClick.initialize(this);
+
  /* editNome = (EditText) findViewById(R.id.editNome);
   editTelefone = (EditText) findViewById(R.id.EditTelefone);
   editEndereco = (EditText) findViewById(R.id.editEndereco);
@@ -67,7 +94,7 @@ public class MainActivity extends Activity
   bar = getActionBar();
   bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
   */
-  
-  
- }
+
+
+    }
 }
