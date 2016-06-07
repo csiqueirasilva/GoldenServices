@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 import br.uva.goldenservices.R;
+import br.uva.goldenservices.ui.OnClick;
 import golden.services.model.anuncios.Anuncio;
 
 /**

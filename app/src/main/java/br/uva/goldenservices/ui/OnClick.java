@@ -23,15 +23,14 @@ public class OnClick {
     private final static View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            int id = v.getId();
-            OnClick.resolve(id);
+            OnClick.resolve(v);
         }
     };
 
-    public static void resolve(int viewId) {
-        OnClickCallback onClickCallback = callbacks.get(viewId);
+    public static void resolve(View v) {
+        OnClickCallback onClickCallback = callbacks.get(v.getId());
         if(onClickCallback != null) {
-            onClickCallback.onClick();
+            onClickCallback.onClick(v);
         }
     }
 
@@ -52,37 +51,44 @@ public class OnClick {
 
         callbacks.put(R.id.ButtonLogin, new OnClickCallback() {
             @Override
-            public void onClick() {
+            public void onClick(View v) {
                 login();
             }
         });
 
         callbacks.put(R.id.formLoginBtnCadastrar, new OnClickCallback() {
             @Override
-            public void onClick() {
+            public void onClick(View v) {
                 Helper.changeView(R.layout.cadastrousuario);
             }
         });
 
         callbacks.put(R.id.fromCriarBtnVoltar, new OnClickCallback() {
             @Override
-            public void onClick() {
+            public void onClick(View v) {
                 Helper.changeView(R.layout.login);
             }
         });
 
         callbacks.put(R.id.telaInicialLogadoLogoff, new OnClickCallback() {
             @Override
-            public void onClick() {
+            public void onClick(View v) {
                 Helper.changeView(R.layout.login);
             }
         });
 
         callbacks.put(R.id.ButtonCriar, new OnClickCallback() {
             @Override
-            public void onClick() {
+            public void onClick(View v) {
                 Activity activity = Helper.getActivity();
                 FormSubmit.sendCadastroUsuario(activity);
+            }
+        });
+
+        callbacks.put(R.id.listAnuncioItemView, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                Long anuncioId = (Long) v.getTag();
             }
         });
 
@@ -98,6 +104,10 @@ public class OnClick {
             }
         }
 
+    }
+
+    public static View.OnClickListener getOnClickListener() {
+        return listener;
     }
 
 }

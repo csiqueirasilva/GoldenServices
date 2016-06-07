@@ -1,6 +1,7 @@
 package br.uva.goldenservices.ui;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ public class ViewLoader {
 
     private static void listAnuncio() {
 
-        ListaAnuncios listaAnuncio = ConnectorWebService.listarAnuncioet();
+        ListaAnuncios listaAnuncio = ConnectorWebService.listarAnuncio();
 
         if (listaAnuncio != null && listaAnuncio.getListaAnuncios() != null) {
 
@@ -31,12 +32,18 @@ public class ViewLoader {
                 protected void onView(Anuncio a, View v) {
                     TextView viewNomeAnuncio = (TextView) v.findViewById(R.id.txtNomeServico);
                     viewNomeAnuncio.setText(a.getAreaDeAtuacao());
-                    v.setTag("anuncioListId" + a.getId());
+                    v.setTag(a.getId());
                 }
             };
 
             ListView lista = (ListView) Helper.getActivity().findViewById(R.id.listAnuncio);
             lista.setAdapter(anuncioAdapter);
+            lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    OnClick.resolve(view);
+                }
+            });
         }
 
     }
