@@ -58,7 +58,7 @@ public class MenuHelper {
 
         if(op == 1) {
              //todo
-            Helper.changeView(R.layout.listatrabalhosservico);
+            Helper.changeView(R.layout.listar_servicos);
             ret = true;
         } else if (op == 2) {
             //todo
