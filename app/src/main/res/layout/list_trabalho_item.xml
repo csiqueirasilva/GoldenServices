@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceitar"
+        android:id="@+id/listTrabalhoAceitar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="34dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
+        android:layout_below="@+id/listTrabalhoUsuario"
+        android:layout_alignLeft="@+id/listTrabalhoUsuario"
+        android:layout_alignStart="@+id/listTrabalhoUsuario" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Titulo Anuncio"
+        android:id="@+id/listTrabalhoTituloAnuncio"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Negar"
+        android:id="@+id/listTrabalhoNegar"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignTop="@+id/listTrabalhoAceitar"
+        android:layout_toRightOf="@+id/listTrabalhoAceitar"
+        android:layout_toEndOf="@+id/listTrabalhoAceitar"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Fulano (a@a.com)"
+        android:id="@+id/listTrabalhoUsuario"
+        android:layout_below="@+id/listTrabalhoTituloAnuncio"
+        android:layout_alignLeft="@+id/listTrabalhoTituloAnuncio"
+        android:layout_alignStart="@+id/listTrabalhoTituloAnuncio"
+        android:layout_marginTop="30dp" />
+
+</RelativeLayout>

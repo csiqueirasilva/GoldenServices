@@ -1,11 +1,21 @@
 package br.uva.goldenservices.views;
 
 import android.os.Handler;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 import br.uva.goldenservices.R;
+import br.uva.goldenservices.adapters.GenericListAdapter;
 import br.uva.goldenservices.ui.Helper;
+import br.uva.goldenservices.ui.OnClick;
 import golden.services.http.ConnectorWebService;
+import golden.services.model.anuncios.Anuncio;
 import golden.services.model.trabalhos.EstadoTrabalho;
+import golden.services.model.trabalhos.ListaTrabalhos;
 import golden.services.model.trabalhos.PapelTrabalho;
 import golden.services.model.trabalhos.Trabalho;
 import golden.services.model.trabalhos.TrabalhoAtual;
@@ -18,6 +28,26 @@ public class TrabalhoView {
 
     private static final Handler handler = new Handler();
     private static Long trabalhoId;
+
+    public static void finalizarTrabalho () {
+        if(trabalhoId != null) {
+
+        }
+    }
+
+    public static void negarTrabalho(Long id) {
+        Trabalho trabalho = ConnectorWebService.negarTrabalho(id.toString());
+        if(trabalho == null) {
+            Helper.alert("Erro ao negar trabalho");
+        } else {
+            Helper.alert("Trabalho cancelado");
+            Helper.changeView(R.layout.lista_trabalho_prestador);
+        }
+    }
+
+    public static void aceitarTrabalho(Long id) {
+
+    }
 
     public static void cancelarTrabalho() {
         if(trabalhoId != null) {
@@ -83,5 +113,41 @@ public class TrabalhoView {
         }
 
         return ret;
+    }
+
+    public static void listPrestador() {
+
+        ListaTrabalhos listaTrabalhos = ConnectorWebService.listarTrabalhoPrestador();
+        if(listaTrabalhos != null && listaTrabalhos.getTrabalhos() != null) {
+            List<Trabalho> trabalhos = listaTrabalhos.getTrabalhos();
+
+            GenericListAdapter<Trabalho> trabalhoAdapter = new GenericListAdapter<Trabalho>(Helper.getActivity(), R.layout.list_trabalho_item, trabalhos, false) {
+                @Override
+                protected void onView(Trabalho t, View v) {
+                    TextView viewNomeAnuncio = (TextView) v.findViewById(R.id.listTrabalhoTituloAnuncio);
+                    viewNomeAnuncio.setClickable(true);
+                    viewNomeAnuncio.setText(t.getAnuncio().getAreaDeAtuacao());
+                    viewNomeAnuncio.setTag(t.getAnuncio().getId());
+                    viewNomeAnuncio.setOnClickListener(OnClick.getOnClickListener());
+                    TextView viewNomeCliente = (TextView) v.findViewById(R.id.listTrabalhoUsuario);
+                    viewNomeCliente.setText(t.getUsuario().getNome() + " (" + t.getUsuario().getEmail() + " " + t.getUsuario().getTelefone() + ")");
+                    View view = v.findViewById(R.id.listTrabalhoAceitar);
+                    view.setTag(t.getId());
+                    view.setOnClickListener(OnClick.getOnClickListener());
+                    view = v.findViewById(R.id.listTrabalhoNegar);
+                    view.setTag(t.getId());
+                    view.setOnClickListener(OnClick.getOnClickListener());
+                }
+            };
+
+            ListView lista = (ListView) Helper.getActivity().findViewById(R.id.listTrabalhoPrestador);
+            lista.setAdapter(trabalhoAdapter);
+
+            TextView emptyList = (TextView) Helper.getActivity().findViewById(R.id.listTrabalhoPrestadorVazia);
+            lista.setEmptyView(emptyList);
+
+            OnClick.fillOnClickCallbacks();
+            OnClick.setOnClickListener();
+        }
     }
 }

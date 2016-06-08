@@ -55,11 +55,10 @@ public class MenuHelper {
         boolean ret = false;
 
         if(op == 1) {
-             //todo
-            Helper.changeView(R.layout.listar_servicos);
+            Helper.changeView(R.layout.lista_servicos);
             ret = true;
         } else if (op == 2) {
-            //todo
+            Helper.changeView(R.layout.lista_trabalho_prestador);
             ret = true;
         } else if (op == 3) {
             //todo
@@ -67,7 +66,6 @@ public class MenuHelper {
             ret = true;
         } else if (op == 4) {
             //todo
-            Helper.changeView(R.layout.listatrabalhoefetuado);
             ret = true;
         } else if (op == 5) {
             //todo

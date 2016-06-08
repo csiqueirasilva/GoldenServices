@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Efetuando Trabalho"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Titulo Anuncio"
+        android:id="@+id/trabalhoEfetuandoTituloAnuncio"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Informacoes Usuario Prestador blablablabalbalbalba"
+        android:id="@+id/trabalhoEfetuandoInfoPrestador"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/trabalhoEfetuandoTituloAnuncio"
+        android:layout_alignLeft="@+id/trabalhoEfetuandoTituloAnuncio"
+        android:layout_alignStart="@+id/trabalhoEfetuandoTituloAnuncio"
+        android:layout_alignRight="@+id/trabalhoEfetuandoTituloAnuncio"
+        android:layout_alignEnd="@+id/trabalhoEfetuandoTituloAnuncio" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Informacoes Usuario Cliente blablablabalbalbalba"
+        android:id="@+id/trabalhoEfetuandoInfoCliente"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/trabalhoEfetuandoInfoPrestador"
+        android:layout_alignLeft="@+id/trabalhoEfetuandoInfoPrestador"
+        android:layout_alignStart="@+id/trabalhoEfetuandoInfoPrestador"
+        android:layout_alignRight="@+id/trabalhoEfetuandoInfoPrestador"
+        android:layout_alignEnd="@+id/trabalhoEfetuandoInfoPrestador" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terminar Trabalho"
+        android:id="@+id/trabalhoEfetuandoTerminarTrabalho"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Trabalho inciado em 20/20/20 as 00:00:00"
+        android:id="@+id/trabalhoEfetuandoInfoTempo"
+        android:layout_below="@+id/trabalhoEfetuandoInfoCliente"
+        android:layout_alignLeft="@+id/trabalhoEfetuandoInfoCliente"
+        android:layout_alignStart="@+id/trabalhoEfetuandoInfoCliente"
+        android:layout_marginTop="35dp"
+        android:layout_alignRight="@+id/trabalhoEfetuandoInfoCliente"
+        android:layout_alignEnd="@+id/trabalhoEfetuandoInfoCliente" />
+
+</RelativeLayout>

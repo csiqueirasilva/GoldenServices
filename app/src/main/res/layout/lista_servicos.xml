@@ -9,4 +9,9 @@
         android:id="@+id/listAnuncio"
         />
 
+    <TextView android:id="@+id/listAnuncioVazia"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Não há nada aqui!" />
+
 </LinearLayout>
