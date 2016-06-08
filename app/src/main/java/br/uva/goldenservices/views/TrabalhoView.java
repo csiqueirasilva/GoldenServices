@@ -1,11 +1,14 @@
 package br.uva.goldenservices.views;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.List;
 
 import br.uva.goldenservices.R;
@@ -31,7 +34,14 @@ public class TrabalhoView {
 
     public static void finalizarTrabalho () {
         if(trabalhoId != null) {
-
+            Trabalho trabalho = ConnectorWebService.encerrarTrabalho(trabalhoId.toString());
+            if(trabalho == null) {
+                Helper.alert("Erro ao encerrar trabalho");
+            } else {
+                trabalhoId = null;
+                Helper.alert("Trabalho encerrado!");
+                Helper.changeView(R.layout.lista_trabalho_prestador);
+            }
         }
     }
 
@@ -46,7 +56,13 @@ public class TrabalhoView {
     }
 
     public static void aceitarTrabalho(Long id) {
-
+        if(id != null) {
+            Trabalho trabalho = ConnectorWebService.confirmarTrabalho(id.toString());
+            if(trabalho != null) {
+                trabalhoId = trabalho.getId();
+                Helper.changeView(R.layout.trabalho_efetuando);
+            }
+        }
     }
 
     public static void cancelarTrabalho() {
@@ -102,17 +118,38 @@ public class TrabalhoView {
                     ret = true;
                 }
             } else if (trabalho.getEstado() == EstadoTrabalho.EFETUANDO) {
-                if (papel == PapelTrabalho.USUARIO) {
-
-                } else {
-                    //todo
-                }
-
+                TrabalhoView.trabalhoEfetuando(trabalho);
                 ret = false;
             }
         }
 
         return ret;
+    }
+
+    private static void trabalhoEfetuando(Trabalho t) {
+        if(t != null) {
+            Helper.simpleChangeView(R.layout.trabalho_efetuando);
+            Usuario cliente = t.getUsuario();
+            Usuario prestador = t.getAnuncio().getPrestador();
+            Activity v = Helper.getActivity();
+            TextView tituloAnuncio = (TextView) v.findViewById(R.id.trabalhoEfetuandoTituloAnuncio);
+            tituloAnuncio.setText(t.getAnuncio().getAreaDeAtuacao());
+            TextView infoCliente = (TextView) v.findViewById(R.id.trabalhoEfetuandoInfoCliente);
+            infoCliente .setText("Cliente: " + cliente.getNome() + " (" +  cliente.getEmail() + " - " + cliente.getTelefone() + ")");
+            TextView infoPrestador = (TextView) v.findViewById(R.id.trabalhoEfetuandoInfoPrestador);
+            infoPrestador.setText("Prestador: " + prestador.getNome() + " (" +  prestador.getEmail() + " - " + prestador.getTelefone() + ")");
+            TextView infoTempo = (TextView) v.findViewById(R.id.trabalhoEfetuandoInfoTempo);
+            DateFormat instance = DateFormat.getInstance();
+            infoTempo.setText("Criado em: " + instance.format(t.getDatainicio()));
+            Button buttonTerminar = (Button) v.findViewById(R.id.trabalhoEfetuandoTerminarTrabalho);
+            Usuario usuarioConectado = Helper.getUsuarioConectado();
+            if(usuarioConectado.getId() == cliente.getId()) {
+                buttonTerminar.setEnabled(false);
+                buttonTerminar.setText("O Prestador irá finalizar o trabalho no App");
+            } else {
+                buttonTerminar.setOnClickListener(OnClick.getOnClickListener());
+            }
+        }
     }
 
     public static void listPrestador() {

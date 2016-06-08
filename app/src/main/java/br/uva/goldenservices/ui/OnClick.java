@@ -148,6 +148,13 @@ public class OnClick {
             }
         });
 
+        callbacks.put(R.id.trabalhoEfetuandoTerminarTrabalho, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                TrabalhoView.finalizarTrabalho();
+            }
+        });
+
     }
 
     public static void setOnClickListener() {
