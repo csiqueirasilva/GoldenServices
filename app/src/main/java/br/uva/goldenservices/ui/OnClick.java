@@ -1,18 +1,14 @@
 package br.uva.goldenservices.ui;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-import br.uva.goldenservices.MainActivity;
 import br.uva.goldenservices.R;
 import br.uva.goldenservices.views.AnuncioView;
+import br.uva.goldenservices.views.TrabalhoView;
 import golden.services.http.ConnectorWebService;
 import golden.services.model.usuarios.Usuario;
 
@@ -100,7 +96,7 @@ public class OnClick {
         callbacks.put(R.id.anuncioAceitarViewBtn, new OnClickCallback() {
             @Override
             public void onClick(View v) {
-
+                Helper.changeView(R.layout.trabalho_aguardar_prestador);
             }
         });
 
@@ -108,6 +104,13 @@ public class OnClick {
             @Override
             public void onClick(View v) {
                 Helper.changeView(R.layout.listar_servicos);
+            }
+        });
+
+        callbacks.put(R.id.trabalhoLockCancelarBtn, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                TrabalhoView.cancelarTrabalho();
             }
         });
 

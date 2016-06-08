@@ -76,6 +76,12 @@ public class Helper {
         ViewLoader.initialize(mainActivity.getCurrentView());
     }
 
+    public static void simpleChangeView(int id) {
+        mainActivity.setCurrentView(id);
+        OnClick.fillOnClickCallbacks();
+        OnClick.setOnClickListener();
+    }
+
     public static void changeView(int id) {
         mainActivity.setCurrentView(id);
         Helper.initialize(mainActivity);

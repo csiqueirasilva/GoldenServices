@@ -14,6 +14,7 @@ public class MenuHelper {
             case R.layout.cadastrousuario:
                 menu.add(id, 1, 1, "Voltar a tela de login");
                 break;
+            case R.layout.trabalho_aguardar_prestador:
             case R.layout.login:
                 break;
             default:
@@ -38,6 +39,7 @@ public class MenuHelper {
             case R.layout.cadastrousuario:
                 ret = cadastroUsuario(op);
                 break;
+            case R.layout.trabalho_aguardar_prestador:
             case R.layout.login:
                 break;
             default:
