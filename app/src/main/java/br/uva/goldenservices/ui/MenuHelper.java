@@ -14,12 +14,10 @@ public class MenuHelper {
             case R.layout.cadastrousuario:
                 menu.add(id, 1, 1, "Voltar a tela de login");
                 break;
-            case R.layout.criarservico:
-            case R.layout.listatrabalhoefetuado:
-            case R.layout.listatrabalhosservico:
-            case R.layout.telainiciallogado:
-                defaultMenu(id, menu);
+            case R.layout.login:
                 break;
+            default:
+                defaultMenu(id, menu);
         }
     }
 
@@ -40,12 +38,10 @@ public class MenuHelper {
             case R.layout.cadastrousuario:
                 ret = cadastroUsuario(op);
                 break;
-            case R.layout.criarservico:
-            case R.layout.listatrabalhoefetuado:
-            case R.layout.listatrabalhosservico:
-            case R.layout.telainiciallogado:
-                ret = defaultMenuOps(op);
+            case R.layout.login:
                 break;
+            default:
+                ret = defaultMenuOps(op);
         }
 
         return ret;

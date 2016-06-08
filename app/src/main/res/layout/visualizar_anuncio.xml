@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/anuncioViewLayout">
 
-</LinearLayout>
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Anúncio"
+        android:id="@+id/anuncioTituloView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="24dp"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="descricaoText"
+        android:id="@+id/anuncioDescricaoText"
+        android:layout_below="@+id/anuncioTituloView"
+        android:layout_alignLeft="@+id/anuncioTituloView"
+        android:layout_alignStart="@+id/anuncioTituloView"
+        android:layout_alignRight="@+id/anuncioTituloView"
+        android:layout_alignEnd="@+id/anuncioTituloView"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="anuncioPrecoView"
+        android:id="@+id/anuncioPrecoView"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/anuncioDescricaoText"
+        android:layout_alignLeft="@+id/anuncioDescricaoText"
+        android:layout_alignStart="@+id/anuncioDescricaoText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="anuncioRegiaoView"
+        android:id="@+id/anuncioRegiaoView"
+        android:layout_alignTop="@+id/anuncioPrecoView"
+        android:layout_alignRight="@+id/anuncioDescricaoText"
+        android:layout_alignEnd="@+id/anuncioDescricaoText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eu quero"
+        android:id="@+id/anuncioAceitarViewBtn"
+        android:layout_marginTop="93dp"
+        android:layout_below="@+id/anuncioPrecoView"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar a Lista de Anúncios"
+        android:id="@+id/anuncioVoltarAListaViewBtn"
+        android:layout_below="@+id/anuncioAceitarViewBtn"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

@@ -19,11 +19,13 @@ public abstract class GenericListAdapter<T> extends ArrayAdapter {
 
     private List<T> objects;
     private int parentLayoutId;
+    private boolean reverse;
 
-    public GenericListAdapter(Context context, int textViewResourceId, List<T> objects) {
+    public GenericListAdapter(Context context, int textViewResourceId, List<T> objects, boolean reverse) {
         super(context, textViewResourceId, objects);
         this.objects = objects;
         this.parentLayoutId = textViewResourceId;
+        this.reverse = reverse;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -34,7 +36,7 @@ public abstract class GenericListAdapter<T> extends ArrayAdapter {
             v = inflater.inflate(this.parentLayoutId, null);
         }
 
-        T targetObject = objects.get(position);
+        T targetObject = objects.get(this.reverse ? objects.size() - 1 - position : position);
 
         if (targetObject != null) {
             onView(targetObject, v);

@@ -1,12 +1,16 @@
 package br.uva.goldenservices.ui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 
 import br.uva.goldenservices.MainActivity;
+import br.uva.goldenservices.R;
 import golden.services.model.usuarios.Usuario;
 
 /**
@@ -17,6 +21,23 @@ public class Helper {
     private static MainActivity mainActivity;
     private final static ArrayList<View> lastSearch = new ArrayList();
     private static Usuario usuarioConectado = null;
+
+    public static View getViewFromParent(int viewId, int layoutId) {
+        View v = null;
+
+        if(mainActivity != null) {
+            v = mainActivity.findViewById(viewId);
+
+            if (v == null) {
+                LayoutInflater inflater = (LayoutInflater) mainActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View context = inflater.inflate(layoutId, null);
+                v = context.findViewById(viewId);
+            }
+
+        }
+
+        return v;
+    }
 
     public static void enableLastSearch() {
         for (View v : lastSearch) {

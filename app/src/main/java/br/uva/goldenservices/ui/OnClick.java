@@ -1,6 +1,8 @@
 package br.uva.goldenservices.ui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
@@ -10,6 +12,7 @@ import java.util.Set;
 
 import br.uva.goldenservices.MainActivity;
 import br.uva.goldenservices.R;
+import br.uva.goldenservices.views.AnuncioView;
 import golden.services.http.ConnectorWebService;
 import golden.services.model.usuarios.Usuario;
 
@@ -89,6 +92,8 @@ public class OnClick {
             @Override
             public void onClick(View v) {
                 Long anuncioId = (Long) v.getTag();
+                AnuncioView.setCurrentId(anuncioId);
+                Helper.changeView(R.layout.visualizar_anuncio);
             }
         });
 
