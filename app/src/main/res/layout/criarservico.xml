@@ -112,7 +112,7 @@
         android:layout_marginTop="32dp" />
 
     <EditText
-        android:id="@+id/anuncioCriarRegiao"
+        android:id="@+id/avaliacaoComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -128,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/anuncioCriarRegiao"
+        android:layout_below="@+id/avaliacaoComentario"
         android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="Preço" />

@@ -2,7 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:id="@+id/avaliarservico"
@@ -40,7 +43,7 @@
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/datamodify"
+        android:id="@+id/avaliacaoDataServico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/dataedit"
@@ -57,18 +60,8 @@
         android:layout_below="@+id/dataedit"
         android:text="Nota: " />
 
-    <RatingBar
-        android:id="@+id/rtbEstrelas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nota"
-        android:layout_centerHorizontal="true"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:stepSize="0.5" />
-
     <TextView
-        android:id="@+id/nome_usuario"
+        android:id="@+id/avaliacaoNomeUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/avaliarservico"
@@ -77,37 +70,50 @@
         android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/anuncioCriarRegiao"
+        android:id="@+id/avaliacaoComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/rtbEstrelas"
         android:ems="10"
         android:hint="Comentario"
         android:lines="5" 
         android:gravity="top"
-        >
+        android:editable="true"
+        android:enabled="true"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/avaliacaoEstrelas"
+        android:layout_toRightOf="@+id/cliente"
+        android:layout_toEndOf="@+id/cliente">
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/avaliacaoBtnEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/usuario_pestador_servico"
-        android:layout_below="@+id/anuncioCriarRegiao"
-        android:layout_toRightOf="@+id/datamodify"
-        android:text="Enviar" />
+        android:text="Enviar"
+        android:layout_below="@+id/avaliacaoComentario"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
     <TextView
-        android:id="@+id/tipo_servico"
+        android:id="@+id/avaliacaoTipoServico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/datamodify"
+        android:layout_above="@+id/avaliacaoDataServico"
         android:layout_toRightOf="@+id/cliente"
         android:text="Tipo Serviço"
         android:textSize="15dp" />
-   
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/avaliacaoEstrelas"
+        android:layout_below="@+id/nota"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="1" />
+
 </RelativeLayout>

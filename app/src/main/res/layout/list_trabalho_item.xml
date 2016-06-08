@@ -7,14 +7,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aceitar"
-        android:id="@+id/listTrabalhoAceitar"
+        android:id="@+id/listTrabalhoAceitarBtn"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="34dp"
         android:layout_marginLeft="66dp"
         android:layout_marginStart="66dp"
-        android:layout_below="@+id/listTrabalhoUsuario"
-        android:layout_alignLeft="@+id/listTrabalhoUsuario"
-        android:layout_alignStart="@+id/listTrabalhoUsuario" />
+        android:layout_below="@+id/listTrabalhoInfoCliente"
+        android:layout_alignLeft="@+id/listTrabalhoInfoCliente"
+        android:layout_alignStart="@+id/listTrabalhoInfoCliente" />
 
     <TextView
         android:layout_width="320dp"
@@ -35,9 +35,9 @@
         android:text="Negar"
         android:id="@+id/listTrabalhoNegar"
         android:layout_gravity="center_horizontal"
-        android:layout_alignTop="@+id/listTrabalhoAceitar"
-        android:layout_toRightOf="@+id/listTrabalhoAceitar"
-        android:layout_toEndOf="@+id/listTrabalhoAceitar"
+        android:layout_alignTop="@+id/listTrabalhoAceitarBtn"
+        android:layout_toRightOf="@+id/listTrabalhoAceitarBtn"
+        android:layout_toEndOf="@+id/listTrabalhoAceitarBtn"
         android:layout_marginLeft="44dp"
         android:layout_marginStart="44dp" />
 
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Fulano (a@a.com)"
-        android:id="@+id/listTrabalhoUsuario"
+        android:id="@+id/listTrabalhoInfoCliente"
         android:layout_below="@+id/listTrabalhoTituloAnuncio"
         android:layout_alignLeft="@+id/listTrabalhoTituloAnuncio"
         android:layout_alignStart="@+id/listTrabalhoTituloAnuncio"

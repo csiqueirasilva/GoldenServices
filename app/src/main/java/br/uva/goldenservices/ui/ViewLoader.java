@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import br.uva.goldenservices.R;
 import br.uva.goldenservices.views.AnuncioView;
+import br.uva.goldenservices.views.AvaliacaoView;
 import br.uva.goldenservices.views.TrabalhoView;
 import golden.services.http.ConnectorWebService;
 import golden.services.model.trabalhos.TrabalhoAtual;
@@ -38,6 +39,10 @@ public class ViewLoader {
                         TrabalhoView.criarTrabalho();
                     } else if (id == R.layout.lista_trabalho_prestador) {
                         TrabalhoView.listPrestador();
+                    } else if (id == R.layout.lista_avaliacao) {
+                        AvaliacaoView.list();
+                    } else if (id == R.layout.avaliacaoservico) {
+                        AvaliacaoView.populate();
                     }
                 }
             }

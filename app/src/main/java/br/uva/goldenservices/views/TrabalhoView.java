@@ -3,9 +3,9 @@ package br.uva.goldenservices.views;
 import android.app.Activity;
 import android.os.Handler;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -16,12 +16,12 @@ import br.uva.goldenservices.adapters.GenericListAdapter;
 import br.uva.goldenservices.ui.Helper;
 import br.uva.goldenservices.ui.OnClick;
 import golden.services.http.ConnectorWebService;
-import golden.services.model.anuncios.Anuncio;
 import golden.services.model.trabalhos.EstadoTrabalho;
 import golden.services.model.trabalhos.ListaTrabalhos;
 import golden.services.model.trabalhos.PapelTrabalho;
 import golden.services.model.trabalhos.Trabalho;
 import golden.services.model.trabalhos.TrabalhoAtual;
+import golden.services.model.trabalhos.avaliacoes.Avaliacao;
 import golden.services.model.usuarios.Usuario;
 
 /**
@@ -166,9 +166,9 @@ public class TrabalhoView {
                     viewNomeAnuncio.setText(t.getAnuncio().getAreaDeAtuacao());
                     viewNomeAnuncio.setTag(t.getAnuncio().getId());
                     viewNomeAnuncio.setOnClickListener(OnClick.getOnClickListener());
-                    TextView viewNomeCliente = (TextView) v.findViewById(R.id.listTrabalhoUsuario);
+                    TextView viewNomeCliente = (TextView) v.findViewById(R.id.listTrabalhoInfoCliente);
                     viewNomeCliente.setText(t.getUsuario().getNome() + " (" + t.getUsuario().getEmail() + " " + t.getUsuario().getTelefone() + ")");
-                    View view = v.findViewById(R.id.listTrabalhoAceitar);
+                    View view = v.findViewById(R.id.listTrabalhoAceitarBtn);
                     view.setTag(t.getId());
                     view.setOnClickListener(OnClick.getOnClickListener());
                     view = v.findViewById(R.id.listTrabalhoNegar);
@@ -185,6 +185,28 @@ public class TrabalhoView {
 
             OnClick.fillOnClickCallbacks();
             OnClick.setOnClickListener();
+        }
+    }
+
+    public static void avaliarTrabalho(Long idTrabalho) {
+        if(idTrabalho != null) {
+            String comentario = ((TextView) Helper.getActivity().findViewById(R.id.avaliacaoComentario)).getText().toString();
+            int nota = (int) ((RatingBar) Helper.getActivity().findViewById(R.id.avaliacaoEstrelas)).getRating();
+
+            if(nota == 0) {
+                Helper.alert("Escolha um número de estrelas!");
+            } else if (comentario.isEmpty()) {
+                Helper.alert("Digite um comentário!");
+            } else {
+                Avaliacao avaliacao = ConnectorWebService.avaliarTrabalho(idTrabalho.toString(), comentario, new Integer(nota).toString());
+
+                if (avaliacao == null) {
+                    Helper.alert("Erro ao avaliar trabalho");
+                } else {
+                    Helper.alert("Trabalho avaliado com sucesso");
+                    Helper.changeView(R.layout.lista_avaliacao);
+                }
+            }
         }
     }
 }

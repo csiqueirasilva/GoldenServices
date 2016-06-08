@@ -8,9 +8,9 @@ import java.util.Set;
 
 import br.uva.goldenservices.R;
 import br.uva.goldenservices.views.AnuncioView;
+import br.uva.goldenservices.views.AvaliacaoView;
 import br.uva.goldenservices.views.TrabalhoView;
 import golden.services.http.ConnectorWebService;
-import golden.services.model.anuncios.Anuncio;
 import golden.services.model.usuarios.Usuario;
 
 /**
@@ -132,11 +132,29 @@ public class OnClick {
             }
         });
 
-        callbacks.put(R.id.listTrabalhoAceitar, new OnClickCallback() {
+        callbacks.put(R.id.listAvaliacaoTituloAnuncio, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                Long idAnuncio = (Long) v.getTag();
+                AnuncioView.setCurrentId(idAnuncio);
+                Helper.changeView(R.layout.visualizar_anuncio);
+            }
+        });
+
+        callbacks.put(R.id.listTrabalhoAceitarBtn, new OnClickCallback() {
             @Override
             public void onClick(View v) {
                 Long idTrabalho = (Long) v.getTag();
                 TrabalhoView.aceitarTrabalho(idTrabalho);
+            }
+        });
+
+        callbacks.put(R.id.listAvaliacaoAvaliarBtn, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                Long idTrabalho = (Long) v.getTag();
+                AvaliacaoView.setIdTrabalho(idTrabalho);
+                Helper.changeView(R.layout.avaliacaoservico);
             }
         });
 
@@ -152,6 +170,13 @@ public class OnClick {
             @Override
             public void onClick(View v) {
                 TrabalhoView.finalizarTrabalho();
+            }
+        });
+
+        callbacks.put(R.id.avaliacaoBtnEnviar, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                TrabalhoView.avaliarTrabalho(AvaliacaoView.getIdTrabalho());
             }
         });
 

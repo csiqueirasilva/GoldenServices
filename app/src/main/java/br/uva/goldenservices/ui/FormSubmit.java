@@ -20,7 +20,7 @@ public class FormSubmit {
             R.id.anuncioCriarAreaAtuacao,
             R.id.anuncioCriarDescricao,
             R.id.anuncioCriarPreco,
-            R.id.anuncioCriarRegiao
+            R.id.avaliacaoComentario
         );
 
         TipoServico tipo = ((RadioButton) activity.findViewById(R.id.anuncioCriarRadioGratuito)).isSelected() ? TipoServico.GRATUITO : TipoServico.PAGO;

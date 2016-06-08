@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/anuncioCriarRegiao"
+        android:layout_below="@+id/avaliacaoComentario"
         android:ems="10"
         android:hint="Confirme Senha: "
         android:inputType="textPassword"

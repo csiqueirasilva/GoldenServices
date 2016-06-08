@@ -29,6 +29,7 @@ public class MenuHelper {
         menu.add(id, 3, 3, "Criar servico");
         menu.add(id, 4, 4, "Ver recibo de servicos oferecidos");
         menu.add(id, 5, 5, "Ver recibo de servicos consumidos");
+        menu.add(id, 6, 6, "Avaliar trabalhos consumidos");
         menu.add(id, 9, 9, "Tela de boas vindas");
         menu.add(id, 10, 10, "Desconectar");
     }
@@ -71,6 +72,9 @@ public class MenuHelper {
             ret = true;
         } else if (op == 5) {
             //todo
+            ret = true;
+        } else if (op == 6) {
+            Helper.changeView(R.layout.lista_avaliacao);
             ret = true;
         } else if (op == 9) {
             Helper.changeView(R.layout.telainiciallogado);
