@@ -51,7 +51,7 @@
 
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
+        android:id="@+id/anuncioCriarTipoRadio"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:orientation="horizontal"

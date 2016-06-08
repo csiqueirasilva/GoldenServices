@@ -2,6 +2,7 @@ package br.uva.goldenservices.ui;
 
 import android.app.Activity;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import br.uva.goldenservices.R;
 import br.uva.goldenservices.views.AnuncioView;
@@ -23,7 +24,10 @@ public class FormSubmit {
             R.id.avaliacaoComentario
         );
 
-        TipoServico tipo = ((RadioButton) activity.findViewById(R.id.anuncioCriarRadioGratuito)).isSelected() ? TipoServico.GRATUITO : TipoServico.PAGO;
+        RadioGroup radioGroupTipo = (RadioGroup) activity.findViewById(R.id.anuncioCriarTipoRadio);
+        int tipoSelecionado = radioGroupTipo.getCheckedRadioButtonId();
+
+        TipoServico tipo = tipoSelecionado == R.id.anuncioCriarRadioGratuito ? TipoServico.GRATUITO : TipoServico.PAGO;
 
         Anuncio anuncio = ConnectorWebService.criarAnuncio(strings[0], strings[1], strings[2], strings[3], tipo.toString());
 

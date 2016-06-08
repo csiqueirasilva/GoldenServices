@@ -5,7 +5,7 @@
     android:id="@+id/anuncioViewLayout">
 
     <TextView
-        android:layout_width="320dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Anúncio"
         android:id="@+id/anuncioTituloView"
@@ -19,16 +19,16 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="descricaoText"
         android:id="@+id/anuncioDescricaoText"
         android:layout_below="@+id/anuncioTituloView"
         android:layout_alignLeft="@+id/anuncioTituloView"
         android:layout_alignStart="@+id/anuncioTituloView"
+        android:layout_marginTop="10dp"
         android:layout_alignRight="@+id/anuncioTituloView"
-        android:layout_alignEnd="@+id/anuncioTituloView"
-        android:layout_marginTop="10dp" />
+        android:layout_alignEnd="@+id/anuncioTituloView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,4 +67,15 @@
         android:id="@+id/anuncioVoltarAListaViewBtn"
         android:layout_below="@+id/anuncioAceitarViewBtn"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/anuncioVisualizarScore"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/anuncioPrecoView"
+        android:layout_alignLeft="@+id/anuncioPrecoView"
+        android:layout_alignStart="@+id/anuncioPrecoView" />
 </RelativeLayout>

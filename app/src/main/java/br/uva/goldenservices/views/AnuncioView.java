@@ -16,6 +16,7 @@ import golden.services.http.ConnectorWebService;
 import golden.services.model.anuncios.Anuncio;
 import golden.services.model.anuncios.ListaAnuncios;
 import golden.services.model.anuncios.TipoServico;
+import golden.services.model.trabalhos.avaliacoes.AvaliacaoAgregada;
 import golden.services.model.usuarios.Usuario;
 
 /**
@@ -63,32 +64,49 @@ public class AnuncioView {
         Anuncio anuncio = ConnectorWebService.obterAnuncio(idAnuncio);
         Usuario usuario = ConnectorWebService.getUsuarioLogado();
         if(anuncio != null) {
-            TextView t = (TextView) Helper.getActivity().findViewById(R.id.anuncioTituloView);
-            t.setText(anuncio.getAreaDeAtuacao());
+            AvaliacaoAgregada avaliacaoAgregada = ConnectorWebService.agregarAvaliacao(idAnuncio);
 
-            t = (TextView) Helper.getActivity().findViewById(R.id.anuncioDescricaoText);
-            t.setText(anuncio.getDescricao());
+            if(avaliacaoAgregada != null) {
 
-            t = (TextView) Helper.getActivity().findViewById(R.id.anuncioPrecoView);
-            String precoString = anuncio.getTipoDeServico().toString();
+                TextView t = (TextView) Helper.getActivity().findViewById(R.id.anuncioTituloView);
+                t.setText(anuncio.getAreaDeAtuacao());
 
-            if(anuncio.getTipoDeServico() == TipoServico.PAGO) {
-                precoString += " - " + anuncio.getPreco().floatValue();
-            }
+                t = (TextView) Helper.getActivity().findViewById(R.id.anuncioVisualizarScore);
 
-            t.setText(precoString);
+                if(avaliacaoAgregada.getTotalAvaliacoes() == 0) {
+                    t.setText("Não há avaliações para esse Anúncio");
+                } else {
+                    float score = ((float) Math.round(100f * (((float) avaliacaoAgregada.getTotalPontos()) / ((float) avaliacaoAgregada.getTotalAvaliacoes())))) / 100f;
+                    t.setText(score + "/5 de um total de " + avaliacaoAgregada.getTotalAvaliacoes() + " avaliacoes");
+                }
 
-            t = (TextView) Helper.getActivity().findViewById(R.id.anuncioRegiaoView);
-            t.setText(anuncio.getRegiao());
+                t = (TextView) Helper.getActivity().findViewById(R.id.anuncioDescricaoText);
+                t.setText(anuncio.getDescricao());
 
-            Button btn = (Button) Helper.getActivity().findViewById(R.id.anuncioAceitarViewBtn);
+                t = (TextView) Helper.getActivity().findViewById(R.id.anuncioPrecoView);
+                String precoString = anuncio.getTipoDeServico().toString();
 
-            if(usuario.getId() == anuncio.getPrestador().getId()) {
-                btn.setText("Você criou esse anúncio");
-                btn.setEnabled(false);
+                if (anuncio.getTipoDeServico() == TipoServico.PAGO) {
+                    precoString += " - " + anuncio.getPreco().floatValue();
+                }
+
+                t.setText(precoString);
+
+                t = (TextView) Helper.getActivity().findViewById(R.id.anuncioRegiaoView);
+                t.setText(anuncio.getRegiao());
+
+                Button btn = (Button) Helper.getActivity().findViewById(R.id.anuncioAceitarViewBtn);
+
+                if (usuario.getId() == anuncio.getPrestador().getId()) {
+                    btn.setText("Você criou esse anúncio");
+                    btn.setEnabled(false);
+                } else {
+                    btn.setText("Eu quero");
+                    btn.setEnabled(true);
+                }
             } else {
-                btn.setText("Eu quero");
-                btn.setEnabled(true);
+                Helper.alert("Erro ao agregar avaliacoes");
+                Helper.changeView(R.layout.login);
             }
         }
     }
