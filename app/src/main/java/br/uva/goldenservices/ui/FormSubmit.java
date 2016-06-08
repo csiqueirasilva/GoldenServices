@@ -4,13 +4,37 @@ import android.app.Activity;
 import android.widget.RadioButton;
 
 import br.uva.goldenservices.R;
+import br.uva.goldenservices.views.AnuncioView;
 import golden.services.http.ConnectorWebService;
+import golden.services.model.anuncios.Anuncio;
+import golden.services.model.anuncios.TipoServico;
 import golden.services.model.usuarios.Usuario;
 
 /**
  * Created by caio on 30/05/16.
  */
 public class FormSubmit {
+
+    public static void sendCadastroAnuncio(Activity activity) {
+        String[] strings = Helper.getStringValues(false,
+            R.id.anuncioCriarAreaAtuacao,
+            R.id.anuncioCriarDescricao,
+            R.id.anuncioCriarPreco,
+            R.id.anuncioCriarRegiao
+        );
+
+        TipoServico tipo = ((RadioButton) activity.findViewById(R.id.anuncioCriarRadioGratuito)).isSelected() ? TipoServico.GRATUITO : TipoServico.PAGO;
+
+        Anuncio anuncio = ConnectorWebService.criarAnuncio(strings[0], strings[1], strings[2], strings[3], tipo.toString());
+
+        if(anuncio == null) {
+            Helper.alert("Erro ao criar anúncio!");
+        } else {
+            Helper.alert("Anúncio criado!");
+            AnuncioView.setCurrentId(anuncio.getId());
+            Helper.changeView(R.layout.visualizar_anuncio);
+        }
+    }
 
     public static enum Sexo {
         FEMININO,

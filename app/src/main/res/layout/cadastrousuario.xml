@@ -11,7 +11,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/CriarUsuario"
+            android:id="@+id/anuncioCriarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Criar Usuário"
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/anuncioCriarRegiao"
         android:ems="10"
         android:hint="Confirme Senha: "
         android:inputType="textPassword"

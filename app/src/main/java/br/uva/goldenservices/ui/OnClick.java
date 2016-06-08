@@ -97,6 +97,28 @@ public class OnClick {
             }
         });
 
+        callbacks.put(R.id.anuncioAceitarViewBtn, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        callbacks.put(R.id.anuncioVoltarAListaViewBtn, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                Helper.changeView(R.layout.listar_servicos);
+            }
+        });
+
+        callbacks.put(R.id.anuncioCriarBtnConfirmar, new OnClickCallback() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = Helper.getActivity();
+                FormSubmit.sendCadastroAnuncio(activity);
+            }
+        });
+
     }
 
     public static void setOnClickListener() {

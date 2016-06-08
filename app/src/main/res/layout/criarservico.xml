@@ -1,132 +1,136 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/anuncioCriarAreaAtuacao"
+        android:layout_width="159dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/viewArea"
+        android:layout_alignBottom="@+id/viewArea"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/viewArea"
+        android:ems="10"
+        android:textSize="25dp">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/anuncioCriarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Criar Anúncio"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/viewArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/anuncioCriarTitle"
+        android:layout_marginTop="15dp"
+        android:text="Área: "
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/tipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25dp"
+        android:layout_above="@+id/anuncioCriarDescricao"
+        android:layout_toLeftOf="@+id/anuncioCriarAreaAtuacao"
+        android:layout_toStartOf="@+id/anuncioCriarAreaAtuacao" />
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-             <EditText
-                 android:id="@+id/editarea"
-                 android:layout_width="159dp"
-                 android:layout_height="wrap_content"
-                 android:layout_alignBaseline="@+id/viewArea"
-                 android:layout_alignBottom="@+id/viewArea"
-                 android:layout_alignParentRight="true"
-                 android:layout_toRightOf="@+id/viewArea"
-                 android:ems="10"
-                 android:textSize="25dp" >
-
-                 <requestFocus />
-             </EditText>
-
-             <TextView
-                 android:id="@+id/CriarUsuario"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_alignParentTop="true"
-                 android:layout_centerHorizontal="true"
-                 android:text="Criar Usuário"
-                 android:textAppearance="?android:attr/textAppearanceMedium"
-                 android:textSize="25dp" />
-
-             <TextView
-                 android:id="@+id/viewArea"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_alignParentLeft="true"
-                 android:layout_below="@+id/CriarUsuario"
-                 android:layout_marginTop="15dp"
-                 android:text="Área: "
-                 android:textSize="25dp" />
-           
-      			<TextView
-                 android:id="@+id/tipo"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/viewArea"
-                 android:layout_centerHorizontal="true"
-                 android:layout_alignParentLeft="true"
-                 android:text="Tipo"
-                 android:textAppearance="?android:attr/textAppearanceMedium"
-                 android:textSize="25dp" />         
-             
-             
-     <RadioGroup
+    <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText2"
-        android:orientation="horizontal" 
+        android:layout_height="40dp"
+        android:orientation="horizontal"
         android:textSize="25dp"
-        
-        
-        >
-   </RadioGroup>
+        android:layout_below="@+id/anuncioCriarAreaAtuacao"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="31dp"
+        android:layout_alignRight="@+id/anuncioCriarAreaAtuacao"
+        android:layout_alignEnd="@+id/anuncioCriarAreaAtuacao">
 
-    <RadioButton
-        android:id="@+id/radioGratuito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/radioPago"
-        android:layout_below="@+id/radioPago"
-        android:layout_marginTop="20dp"
-        android:text="Gratuito"
-        android:textSize="25sp" />
+        <RadioButton
+            android:id="@+id/anuncioCriarRadioPago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <RadioButton
-        android:id="@+id/radioPago"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-      
-        android:layout_below="@+id/tipo"
-        android:layout_toRightOf="@+id/tipo"
-        android:text="Pago"
-        android:textSize="25dp" />
+            android:layout_below="@+id/tipo"
+            android:layout_toRightOf="@+id/tipo"
+            android:text="Pago"
+            android:textSize="25dp"
+            android:checked="false" />
+
+        <RadioButton
+            android:id="@+id/anuncioCriarRadioGratuito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/anuncioCriarRadioPago"
+            android:layout_below="@+id/anuncioCriarRadioPago"
+            android:text="Gratuito"
+            android:textSize="25sp"
+            android:layout_marginLeft="0dp"
+            android:checked="true" />
+
+    </RadioGroup>
 
     <EditText
-        android:id="@+id/editDescricao"
+        android:id="@+id/anuncioCriarDescricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/radioGratuito"
         android:ems="10"
         android:hint="Descrição"
-        android:lines="3" />
+        android:lines="3"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/anuncioCriarAreaAtuacao"
+        android:layout_alignEnd="@+id/anuncioCriarAreaAtuacao" />
 
     <Button
-        android:id="@+id/buttoncriar"
+        android:id="@+id/anuncioCriarBtnConfirmar"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/CriarUsuario"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
         android:text="Criar"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_below="@+id/anuncioCriarPreco"
+        android:layout_alignLeft="@+id/anuncioCriarTitle"
+        android:layout_alignStart="@+id/anuncioCriarTitle"
+        android:layout_marginTop="32dp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/anuncioCriarRegiao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editDescricao"
+        android:layout_below="@+id/anuncioCriarDescricao"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Região de Atendimento" />
 
     <EditText
-        android:id="@+id/Preco"
+        android:id="@+id/anuncioCriarPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/anuncioCriarRegiao"
         android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="Preço" />
 
-  </RelativeLayout>
+</RelativeLayout>

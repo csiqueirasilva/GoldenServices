@@ -17,7 +17,7 @@
                  android:textSize="25dp" />
 
       			<EditText
-      			    android:id="@+id/editarea"
+      			    android:id="@+id/anuncioCriarAreaAtuacao"
       			    android:layout_width="159dp"
       			    android:layout_height="wrap_content"
       			    android:layout_alignParentLeft="true"
@@ -34,7 +34,7 @@
       			    android:id="@+id/button1"
       			    android:layout_width="wrap_content"
       			    android:layout_height="wrap_content"
-      			    android:layout_below="@+id/editarea"
+      			    android:layout_below="@+id/anuncioCriarAreaAtuacao"
       			    android:layout_centerHorizontal="true"
       			    android:text="Reset Senha" />
 
