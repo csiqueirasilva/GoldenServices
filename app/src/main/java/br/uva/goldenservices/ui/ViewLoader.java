@@ -21,6 +21,7 @@ public class ViewLoader {
             Helper.setUsuarioConectado(usuarioLogado);
 
             if (usuarioLogado == null) {
+                TrabalhoView.setTimer(false);
                 Helper.changeView(R.layout.login);
             } else {
                 TrabalhoAtual trabalhoAtual = ConnectorWebService.obterTrabalhoAtual();
@@ -28,6 +29,7 @@ public class ViewLoader {
                 boolean redirect = TrabalhoView.resolve(trabalhoAtual);
 
                 if (redirect) {
+                    TrabalhoView.setTimer(false);
                     if (id == R.layout.telainiciallogado) {
                         TextView label = (TextView) Helper.getActivity().findViewById(R.id.telaInicialLogadoUsuarioConectado);
                         label.setText(usuarioLogado.getEmail() + " " + usuarioLogado.getNome());
@@ -46,6 +48,8 @@ public class ViewLoader {
                     }
                 }
             }
+        } else {
+            TrabalhoView.setTimer(false);
         }
     }
 }

@@ -31,6 +31,15 @@ public class TrabalhoView {
 
     private static final Handler handler = new Handler();
     private static Long trabalhoId;
+    private static boolean timer = false;
+
+    public static boolean isTimer() {
+        return timer;
+    }
+
+    public static void setTimer(boolean timer) {
+        TrabalhoView.timer = timer;
+    }
 
     public static void finalizarTrabalho () {
         if(trabalhoId != null) {
@@ -77,6 +86,31 @@ public class TrabalhoView {
         }
     }
 
+    public static void iniciarTimerClienteEfetuando() {
+        final int timer = 1000;
+        final long trabalhoIdLong = trabalhoId;
+        setTimer(true);
+        // start timer
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Trabalho trabalhoFetch = ConnectorWebService.obterTrabalho(trabalhoIdLong + "");
+                if(isTimer()) {
+                    if (trabalhoFetch != null) {
+                        if (trabalhoFetch.getEstado() == EstadoTrabalho.EFETUANDO) {
+                            handler.postDelayed(this, timer);
+                        } else {
+                            setTimer(false);
+                            Helper.alert("Trabalho concluído! Você pode avaliar o trabalho agora.");
+                            AvaliacaoView.setIdTrabalho(trabalhoIdLong);
+                            Helper.changeView(R.layout.avaliacaoservico);
+                        }
+                    }
+                }
+            }
+        }, timer);
+    }
+
     public static void criarTrabalho() {
         Long anuncioId = AnuncioView.getCurrentId();
         if(anuncioId != null && trabalhoId == null) {
@@ -86,10 +120,42 @@ public class TrabalhoView {
                 Helper.changeView(R.layout.visualizar_anuncio);
             } else {
                 trabalhoId = trabalho.getId();
-                Helper.alert(trabalhoId + ""); // debug
-                // start timer
+                iniciarTimerClienteAguardandoConfirmacao(trabalho);
             }
         }
+    }
+
+    private static void iniciarTimerClienteAguardandoConfirmacao(Trabalho trabalho) {
+        final int timer = 1000;
+        final long trabalhoIdLong = trabalhoId;
+        final EstadoTrabalho estadoInicial = trabalho.getEstado();
+        setTimer(true);
+        // start timer
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Trabalho trabalhoFetch = ConnectorWebService.obterTrabalho(trabalhoIdLong + "");
+                if(isTimer()) {
+                    if (trabalhoFetch != null) {
+                        if (trabalhoFetch.getEstado() == estadoInicial) {
+                            handler.postDelayed(this, timer);
+                        } else if (trabalhoFetch.getEstado() == EstadoTrabalho.NEGADO) {
+                            setTimer(false);
+                            Helper.alert("Trabalho negado pelo prestador!");
+                            Helper.changeView(R.layout.visualizar_anuncio);
+                        } else if (trabalhoFetch.getEstado() == EstadoTrabalho.EFETUANDO) {
+                            Helper.alert("Trabalho iniciado!");
+                            Helper.changeView(R.layout.trabalho_efetuando);
+                            iniciarTimerClienteEfetuando();
+                        } else {
+                            setTimer(false);
+                            Helper.alert("Erro! O administrador foi informado");
+                            Helper.changeView(R.layout.login);
+                        }
+                    }
+                }
+            }
+        }, timer);
     }
 
     public static Long getTrabalhoId() {
@@ -113,12 +179,16 @@ public class TrabalhoView {
             if (trabalho.getEstado() == EstadoTrabalho.NAO_INICIADO) {
                 if (papel == PapelTrabalho.USUARIO) {
                     Helper.simpleChangeView(R.layout.trabalho_aguardar_prestador);
+                    iniciarTimerClienteAguardandoConfirmacao(trabalho);
                     ret = false;
                 } else {
                     ret = true;
                 }
             } else if (trabalho.getEstado() == EstadoTrabalho.EFETUANDO) {
                 TrabalhoView.trabalhoEfetuando(trabalho);
+                if(papel == PapelTrabalho.USUARIO) {
+                    iniciarTimerClienteEfetuando();
+                }
                 ret = false;
             }
         }
