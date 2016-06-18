@@ -105,6 +105,7 @@ public class TrabalhoView {
                             setTimer(false);
                             Helper.alert("Trabalho concluído! Você pode avaliar o trabalho agora.");
                             AvaliacaoView.setIdTrabalho(trabalhoIdLong);
+                            trabalhoId = null;
                             Helper.changeView(R.layout.avaliacaoservico);
                         }
                     }
@@ -115,7 +116,7 @@ public class TrabalhoView {
 
     public static void criarTrabalho() {
         Long anuncioId = AnuncioView.getCurrentId();
-        if(anuncioId != null && trabalhoId == null) {
+        if(anuncioId != null) {
             Trabalho trabalho = ConnectorWebService.criarTrabalho(anuncioId.toString());
             if(trabalho == null) {
                 Helper.alert("Erro ao criar trabalho");
