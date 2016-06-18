@@ -41,7 +41,8 @@
              android:ems="10"
              android:hint="Senha"
              android:textAppearance="?android:attr/textAppearanceMedium"
-             android:textSize="25dp" />
+             android:textSize="25dp"
+             android:password="true" />
            
          <Button
         android:id="@+id/ButtonLogin"

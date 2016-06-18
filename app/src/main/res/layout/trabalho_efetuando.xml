@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="320dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Efetuando Trabalho"
@@ -34,7 +34,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Informacoes Usuario Prestador blablablabalbalbalba"
         android:id="@+id/trabalhoEfetuandoInfoPrestador"
-        android:layout_marginTop="49dp"
         android:layout_below="@+id/trabalhoEfetuandoTituloAnuncio"
         android:layout_alignLeft="@+id/trabalhoEfetuandoTituloAnuncio"
         android:layout_alignStart="@+id/trabalhoEfetuandoTituloAnuncio"
@@ -72,7 +71,6 @@
         android:layout_below="@+id/trabalhoEfetuandoInfoCliente"
         android:layout_alignLeft="@+id/trabalhoEfetuandoInfoCliente"
         android:layout_alignStart="@+id/trabalhoEfetuandoInfoCliente"
-        android:layout_marginTop="35dp"
         android:layout_alignRight="@+id/trabalhoEfetuandoInfoCliente"
         android:layout_alignEnd="@+id/trabalhoEfetuandoInfoCliente" />
 

@@ -3,6 +3,8 @@ package br.uva.goldenservices.ui;
 import android.view.Menu;
 
 import br.uva.goldenservices.R;
+import br.uva.goldenservices.database.recibos.Recibo;
+import br.uva.goldenservices.views.ReciboView;
 
 /**
  * Created by caio on 30/05/16.
@@ -64,14 +66,15 @@ public class MenuHelper {
             Helper.changeView(R.layout.lista_trabalho_prestador);
             ret = true;
         } else if (op == 3) {
-            //todo
             Helper.changeView(R.layout.criarservico);
             ret = true;
         } else if (op == 4) {
-            //todo
+            ReciboView.tipo = Recibo.Tipo.PRESTADOR;
+            Helper.changeView(R.layout.lista_recibo);
             ret = true;
         } else if (op == 5) {
-            //todo
+            ReciboView.tipo = Recibo.Tipo.CLIENTE;
+            Helper.changeView(R.layout.lista_recibo);
             ret = true;
         } else if (op == 6) {
             Helper.changeView(R.layout.lista_avaliacao);

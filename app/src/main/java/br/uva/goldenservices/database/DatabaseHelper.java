@@ -43,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private List<Recibo> obterRecibos(Recibo.Tipo tipo) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from recibos where tipo = " + tipo.toString(), null);
+        Cursor res = db.rawQuery("select * from recibos where tipo = '" + tipo.toString() + "'", null);
         res.moveToFirst();
 
         List<Recibo> ret = new ArrayList<Recibo>();

@@ -48,7 +48,7 @@ public class TrabalhoView {
             if(trabalho == null) {
                 Helper.alert("Erro ao encerrar trabalho");
             } else {
-                Helper.getActivity().getDBHelper().inserirRecibo("Trabalho prestado realizado: " + trabalho.getAnuncio().getAreaDeAtuacao(), Recibo.Tipo.PRESTADOR);
+                Helper.getActivity().getDBHelper().inserirRecibo("Trabalho prestado realizado: " + trabalho.getAnuncio().getAreaDeAtuacao() + " para " + trabalho.getUsuario().getNome(), Recibo.Tipo.PRESTADOR);
                 trabalhoId = null;
                 Helper.alert("Trabalho encerrado!");
                 Helper.changeView(R.layout.lista_trabalho_prestador);
@@ -277,7 +277,7 @@ public class TrabalhoView {
                 } else {
                     Trabalho t = ConnectorWebService.obterTrabalho(idTrabalho.toString());
                     if(t != null) {
-                        Helper.getActivity().getDBHelper().inserirRecibo("Trabalho contratado realizado: " + t.getAnuncio().getAreaDeAtuacao(), Recibo.Tipo.CLIENTE);
+                        Helper.getActivity().getDBHelper().inserirRecibo("Trabalho contratado realizado: " + t.getAnuncio().getAreaDeAtuacao() + " por " + t.getAnuncio().getPrestador().getNome(), Recibo.Tipo.CLIENTE);
                     }
                     Helper.alert("Trabalho avaliado com sucesso");
                     Helper.changeView(R.layout.lista_avaliacao);
