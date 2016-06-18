@@ -5,8 +5,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import br.uva.goldenservices.database.DatabaseHelper;
 import br.uva.goldenservices.ui.Helper;
 import br.uva.goldenservices.ui.MenuHelper;
 
@@ -16,6 +19,12 @@ public class MainActivity extends Activity {
 
     private Menu optionsMenu;
     private int currentView = -1;
+
+    private DatabaseHelper dbHelper;
+
+    public DatabaseHelper getDBHelper() {
+        return dbHelper;
+    }
 
     final public class Alert {
 
@@ -80,6 +89,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.login);
+
+        dbHelper = new DatabaseHelper(this);
 
         /* Enable Network */
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
