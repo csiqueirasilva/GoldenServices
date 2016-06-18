@@ -91,7 +91,7 @@ public class Helper {
         mainActivity.alert.show(msg);
     }
 
-    public static Activity getActivity() {
+    public static MainActivity getActivity() {
         return mainActivity;
     }
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 import br.uva.goldenservices.R;
 import br.uva.goldenservices.adapters.GenericListAdapter;
+import br.uva.goldenservices.database.recibos.Recibo;
 import br.uva.goldenservices.ui.Helper;
 import br.uva.goldenservices.ui.OnClick;
 import golden.services.http.ConnectorWebService;
@@ -47,6 +48,7 @@ public class TrabalhoView {
             if(trabalho == null) {
                 Helper.alert("Erro ao encerrar trabalho");
             } else {
+                Helper.getActivity().getDBHelper().inserirRecibo("Trabalho prestado realizado: " + trabalho.getAnuncio().getAreaDeAtuacao(), Recibo.Tipo.PRESTADOR);
                 trabalhoId = null;
                 Helper.alert("Trabalho encerrado!");
                 Helper.changeView(R.layout.lista_trabalho_prestador);
@@ -273,6 +275,10 @@ public class TrabalhoView {
                 if (avaliacao == null) {
                     Helper.alert("Erro ao avaliar trabalho");
                 } else {
+                    Trabalho t = ConnectorWebService.obterTrabalho(idTrabalho.toString());
+                    if(t != null) {
+                        Helper.getActivity().getDBHelper().inserirRecibo("Trabalho contratado realizado: " + t.getAnuncio().getAreaDeAtuacao(), Recibo.Tipo.CLIENTE);
+                    }
                     Helper.alert("Trabalho avaliado com sucesso");
                     Helper.changeView(R.layout.lista_avaliacao);
                 }

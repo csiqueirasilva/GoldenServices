@@ -4,6 +4,7 @@ package br.uva.goldenservices.database.recibos;
  * Created by csiqueira on 18/06/16.
  */
 public class Recibo {
+
     public String getDesc() {
         return desc;
     }
